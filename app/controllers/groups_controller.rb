@@ -13,6 +13,10 @@ class GroupsController < ApplicationController
         redirect_to groups_path, notice: 'Create Successfully'
     end
 
+    def show
+        @group = Group.find(params[:id])
+    end
+
     def edit
         @group = Group.find(params[:id])
     end
