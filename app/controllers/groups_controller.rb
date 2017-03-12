@@ -8,7 +8,7 @@ class GroupsController < ApplicationController
     end
 
     def create
-        @group = Group.find(group_params)
+        @group = Group.new(group_params)
         @group.save
         redirect_to groups_path, notice: 'Create Successfully'
     end
@@ -27,5 +27,11 @@ class GroupsController < ApplicationController
         @group = Group.find(params[:id])
         @group.destroy
         redirect_to groups_path, notice: 'Deleted'
+    end
+
+    private
+
+    def group_params
+        params.require(:group).permit(:title, :description)
     end
 end
